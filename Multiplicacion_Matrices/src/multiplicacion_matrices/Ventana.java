@@ -16,7 +16,6 @@ public class Ventana extends javax.swing.JFrame {
     Matriz Matriz1 = new Matriz();
     Matriz Matriz2 = new Matriz();
     
-    
     public void GenerarMatriz(int f1,int f2,int c1,int c2){   
         
         
@@ -59,6 +58,8 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         Matrizf = new javax.swing.JTable();
         lberror = new javax.swing.JLabel();
+        btnsuma = new javax.swing.JButton();
+        btntras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -216,6 +217,35 @@ public class Ventana extends javax.swing.JFrame {
         lberror.setFont(new java.awt.Font("Arial", 3, 10)); // NOI18N
         lberror.setForeground(new java.awt.Color(255, 0, 0));
 
+        btnsuma.setText("SUMAR");
+        btnsuma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsumaMouseClicked(evt);
+            }
+        });
+        btnsuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsumaActionPerformed(evt);
+            }
+        });
+
+        btntras.setText("TRASPUESTA");
+        btntras.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btntrasMouseMoved(evt);
+            }
+        });
+        btntras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btntrasMouseClicked(evt);
+            }
+        });
+        btntras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,18 +257,6 @@ public class Ventana extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(206, 206, 206))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(btnmulti))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(164, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,11 +267,27 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addGap(199, 211, Short.MAX_VALUE)
                 .addComponent(btng)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lberror, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(btnmulti)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnsuma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btntras)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +312,10 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
-                .addComponent(btnmulti)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnmulti)
+                    .addComponent(btnsuma)
+                    .addComponent(btntras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
@@ -300,23 +337,28 @@ public class Ventana extends javax.swing.JFrame {
             modelo2.setRowCount(Matriz2.Num_filas);
             modelo2.setColumnCount(Matriz2.Num_columnas);
             
-            modelo3.setColumnCount(Matriz2.Num_filas);
-            modelo3.setRowCount(Matriz1.Num_columnas);
             
-        
-        for(i=0;i<Matriz1.Num_filas;i++){
-            for(j=0;j<Matriz2.Num_columnas;j++){
-               for(k=0;k<Matriz1.Num_columnas;k++){
+            if(Matriz1.Num_columnas==Matriz2.Num_filas){
+                
+                modelo3.setRowCount(Matriz1.Num_columnas);
+                modelo3.setColumnCount(Matriz2.Num_filas);
+                
+                for(i=0;i<=Matriz1.Num_filas;i++){
+                    for(j=0;j<=Matriz2.Num_columnas;j++){
+                        for(k=0;k<=Matriz1.Num_columnas;k++){
                    
                    
-                   dato1=Integer.parseInt(modelo1.getValueAt(i, k).toString());
-                   dato2=Integer.parseInt(modelo2.getValueAt(k, j).toString());
-                   s=s+dato1*dato2;
-               } 
-               modelo3.setValueAt(s+"", i,j);
-               s=0;
+                            dato1=Integer.parseInt(modelo1.getValueAt(i, k).toString());
+                            dato2=Integer.parseInt(modelo2.getValueAt(k, j).toString());
+                            s=s+dato1*dato2;
+                        } 
+                    modelo3.setValueAt(s+"", i,j);
+                    s=0;
+                    }
+                }
             }
-        }
+        
+        
         
     }//GEN-LAST:event_btnmultiActionPerformed
 
@@ -338,7 +380,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btngMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btngMouseClicked
         // TODO add your handling code here:
-        
+                
         DefaultTableModel modelo1 = (DefaultTableModel) Matrizz.getModel();
         DefaultTableModel modelo2 = (DefaultTableModel) Matrizz1.getModel();
         DefaultTableModel modelo3 = (DefaultTableModel) Matrizf.getModel();
@@ -348,7 +390,7 @@ public class Ventana extends javax.swing.JFrame {
         Matriz2.Num_filas =Integer.parseInt(f2.getText());
         Matriz2.Num_columnas =Integer.parseInt(c2.getText());
         
-        if (Matriz1.Num_columnas==Matriz2.Num_filas){
+        
             
             if(Matriz1.Num_filas<10 && Matriz1.Num_filas<10 && Matriz2.Num_filas<10 && Matriz2.Num_filas<10){
             
@@ -357,21 +399,92 @@ public class Ventana extends javax.swing.JFrame {
                 modelo2.setRowCount(Matriz2.Num_filas);
                 modelo2.setColumnCount(Matriz2.Num_columnas);
             
-                modelo3.setColumnCount(Matriz2.Num_filas);
-                modelo3.setRowCount(Matriz1.Num_columnas);
             }
             else
             {
                 lberror.setText("la dimension de la matriz se excede");
             }
-        }
         
-        else
-        {
-            lberror.setText("la multiplicacion no se puede efectuar");
-        }
+        
         
     }//GEN-LAST:event_btngMouseClicked
+
+    private void btnsumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsumaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsumaActionPerformed
+
+    private void btntrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntrasActionPerformed
+
+    private void btnsumaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsumaMouseClicked
+        // TODO add your handling code here:
+        int dato1,dato2,k,i,j,s=0;
+        
+        DefaultTableModel modelo1 = (DefaultTableModel) Matrizz.getModel();
+        DefaultTableModel modelo2 = (DefaultTableModel) Matrizz1.getModel();
+        DefaultTableModel modelo3 = (DefaultTableModel) Matrizf.getModel();
+               
+        if(Matriz1.Num_filas==Matriz2.Num_filas && Matriz1.Num_columnas==Matriz2.Num_columnas){
+            
+        
+            modelo1.setRowCount(Matriz1.Num_filas);
+            modelo1.setColumnCount(Matriz1.Num_columnas);
+            modelo2.setRowCount(Matriz2.Num_filas);
+            modelo2.setColumnCount(Matriz2.Num_columnas);
+            
+            modelo3.setRowCount(Matriz1.Num_filas);
+            modelo3.setColumnCount(Matriz1.Num_columnas);
+            
+            for(i=0;i<Matriz1.Num_filas;i++){
+                for(j=0;j<Matriz2.Num_columnas;j++){
+               
+                   dato1=Integer.parseInt(modelo1.getValueAt(i, j).toString());
+                   dato2=Integer.parseInt(modelo2.getValueAt(i, j).toString());
+                   s=dato1+dato2;
+                
+               modelo3.setValueAt(s+"", i,j);
+               s=0;
+                }
+        }
+        }
+        else{
+            lberror.setText("la suma no se puede efectuar");
+        }   
+            
+        
+        
+    }//GEN-LAST:event_btnsumaMouseClicked
+
+    private void btntrasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btntrasMouseMoved
+        // TODO add your handling code here:
+        lberror.setText("solo para la matriz A");
+    }//GEN-LAST:event_btntrasMouseMoved
+
+    private void btntrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btntrasMouseClicked
+        // TODO add your handling code here:
+        int dato1,i,j;
+        
+        DefaultTableModel modelo1 = (DefaultTableModel) Matrizz.getModel();
+        DefaultTableModel modelo3 = (DefaultTableModel) Matrizf.getModel();
+        
+            modelo3.setRowCount(Matriz1.Num_columnas);
+            modelo3.setColumnCount(Matriz1.Num_filas);   
+            
+            for(i=0;i<Matriz1.Num_filas;i++){
+                for(j=0;j<Matriz1.Num_columnas;j++){
+               
+                   dato1=Integer.parseInt(modelo1.getValueAt(i,j).toString());
+                   
+                   
+                
+               modelo3.setValueAt(dato1+"", j,i);
+               
+                }
+        }
+            
+            
+    }//GEN-LAST:event_btntrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -414,6 +527,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTable Matrizz1;
     private javax.swing.JButton btng;
     private javax.swing.JButton btnmulti;
+    private javax.swing.JButton btnsuma;
+    private javax.swing.JButton btntras;
     private javax.swing.JTextField c1;
     private javax.swing.JTextField c2;
     private javax.swing.JTextField f1;
